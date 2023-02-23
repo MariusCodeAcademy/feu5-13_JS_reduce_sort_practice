@@ -43,7 +43,7 @@ function createHtmlTable(tableDataArr) {
   const tr1 = crEl('tr', null, table);
   // cikle kurti th prideti texta ir iterpti i tr
   headers.forEach((headerName) => {
-    crEl('th', headerName, tr1);
+    crEl('th', headerName, tr1, 'headerBtn');
   });
 
   // tbody
@@ -56,11 +56,46 @@ function createHtmlTable(tableDataArr) {
     crEl('td', shObj.quantity, tr);
     crEl('td', shObj.category, tr);
   });
+  addHeaderEventListeners();
 }
 createHtmlTable(shoppingList);
 
+function addHeaderEventListeners() {
+  // visu sugeneruoto lenteles headeriu elementai
+  const tableHeadersArr = els.app.querySelectorAll('.headerBtn');
+  // console.log('tableHeadersArr ===', tableHeadersArr);
+
+  tableHeadersArr.forEach((thEl) => {
+    // kai sortByItemHandler negalim prideti skliausteliu, pakeiciam i arrow fn
+    thEl.addEventListener('click', () => sortByItemHandler(thEl.textContent));
+  });
+}
+// els.sortItemBtn.addEventListener('click', sortByItemHandler);
+
+function sortByItemHandler(sortBy) {
+  console.log('sortByItemHandler ivyko', sortBy);
+
+  if (sortBy === 'quantity') {
+    // sort by item number sort
+    sortNumberItems(shoppingList, sortBy);
+  } else {
+    // sort by item text sort
+    sortItems(shoppingList, sortBy);
+  }
+
+  // draw table
+  createHtmlTable(shoppingList);
+}
+
 // helper fn
 
+function sortItems(arr, byWhat, sortOrder = 'a-z') {
+  arr.sort((aObj, bObj) => aObj[byWhat].localeCompare(bObj[byWhat]));
+}
+
+function sortNumberItems(arr, byWhat) {
+  arr.sort((aObj, bObj) => aObj[byWhat] - bObj[byWhat]);
+}
 function crEl(tagName, text = '', parent = '', className = '') {
   const newEl = document.createElement(tagName);
   if (className) newEl.classList.add(className);
@@ -68,5 +103,3 @@ function crEl(tagName, text = '', parent = '', className = '') {
   if (parent) parent.appendChild(newEl);
   return newEl;
 }
-crEl('p', null, els.app);
-crEl('h2', 'hello, world', els.app);
