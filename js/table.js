@@ -20,6 +20,7 @@ const shoppingList = [
 
 const els = {
   app: document.getElementById('app'),
+  onlyDairyBtn: document.getElementById('onlyDairy'),
 };
 console.log('els ===', els);
 /* 
@@ -85,6 +86,16 @@ function sortByItemHandler(sortBy) {
 
   // draw table
   createHtmlTable(shoppingList);
+}
+
+els.onlyDairyBtn.addEventListener('click', filterDairyProducts);
+
+function filterDairyProducts() {
+  console.log('filterDairyProducts ivyko');
+  // isfiltruoti shoppingList kad liktu tik dairy produktai
+  const dairyOnly = shoppingList.filter((shObj) => shObj.category === 'dairy');
+  // perpiesti lentele
+  createHtmlTable(dairyOnly);
 }
 
 // helper fn
