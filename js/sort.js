@@ -17,5 +17,13 @@ const shoppingList = [
 ];
 
 // isrikiuoti sarasa pagal kiekius nuo maziausio iki diziausio.
+console.table(shoppingList);
+shoppingList.sort((aObj, bObj) => aObj.quantity - bObj.quantity);
+console.table(shoppingList);
 
-shoppingList.sort(() => {});
+// isrikiuoti pagal kategorija a-z, z-a
+// a-z
+shoppingList.sort((aObj, bObj) => aObj.category.localeCompare(bObj.category));
+// z-a
+shoppingList.sort((aObj, bObj) => bObj.category.localeCompare(aObj.category));
+console.table(shoppingList);
