@@ -4,7 +4,7 @@ console.log('reduce.js file was loaded');
 // array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
 // skirtas sumazinti masyvo kazkkokias reiksmes iki vienos reikmes ar objekto.
 // grazina viena reikmes kuri akumuliuoasi 'total'
-// initialValue - galima rasyti arba ne, rekomendacija iki tam tikro lygio visada rasyti.
+// initialValue (pradine total reiksme) - galima rasyti arba ne, rekomendacija iki tam tikro lygio visada rasyti.
 
 const shoppingList = [
   { item: 'Apples', description: 'A bag of fresh apples', quantity: 3 },
@@ -23,3 +23,28 @@ const shoppingList = [
 const numbers = [1, 2, 3, 4, 5, 6, 7];
 
 // su forEach sudeti visas numbers reikmes i viena ir atspaudinti suma
+
+let total = 0;
+numbers.forEach((sk) => {
+  total = total + sk;
+  // total += sk;
+});
+console.log('total ===', total);
+
+// su reduce sudeti visas numbers reikmes i viena ir atspaudinti suma
+
+const numTotal = numbers.reduce((total, sk, i, arr) => {
+  let suma = total + sk;
+  console.log(`index: ${i}, total: ${total} + sk: ${sk} = ${suma}`);
+  return suma;
+}, -100);
+console.log('numTotal ===', numTotal);
+
+// sudauginti visas numeber vertes
+
+const daugyba = numbers.reduce((total, sk) => {
+  const sandauga = total * sk;
+  // console.log('sandauga ===', sandauga);
+  return sandauga;
+}, 1);
+console.log('daugyba ===', daugyba);
