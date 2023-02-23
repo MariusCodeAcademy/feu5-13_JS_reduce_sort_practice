@@ -21,7 +21,7 @@ const shoppingList = [
 const els = {
   app: document.getElementById('app'),
 };
-
+console.log('els ===', els);
 /* 
 <table>
   <tr>
@@ -37,3 +37,13 @@ const headers = ['item', 'description', 'quantity', 'category'];
 // sukurti table
 // sukurti tr
 // cikle kurti th prideti texta ir iterpti i tr
+
+// helper fn
+
+const crEl = (tagName, text = '', parent = '', className = '') => {
+  const newEl = document.createElement(tagName);
+  if (className) newEl.className = className;
+  if (text) newEl.innerHTML = text;
+  if (parent) parent.appendChild(newEl);
+  return newEl;
+};
