@@ -46,7 +46,7 @@ const numTotal = numbers.reduce((total, sk, i, arr) => {
   let suma = total + sk;
   console.log(`index: ${i}, total: ${total} + sk: ${sk} = ${suma}`);
   return suma;
-}, -100);
+}, 0);
 console.log('numTotal ===', numTotal);
 
 // sudauginti visas numeber vertes
