@@ -7,19 +7,27 @@ console.log('reduce.js file was loaded');
 // initialValue (pradine total reiksme) - galima rasyti arba ne, rekomendacija iki tam tikro lygio visada rasyti.
 
 const shoppingList = [
-  { item: "Apples", description: "A bag of fresh apples", quantity: 3, category: "Fruit" },
-  { item: "Milk", description: "A carton of whole milk", quantity: 1, category: "Dairy" },
-  { item: "Bread", description: "A loaf of sourdough bread", quantity: 2, category: "Bakery" },
-  { item: "Eggs", description: "A dozen large eggs", quantity: 2, category: "Dairy" },
-  { item: "Cheese", description: "A block of cheddar cheese", quantity: 1, category: "Dairy" },
-  { item: "Yogurt", description: "A container of Greek yogurt", quantity: 3, category: "Dairy" },
-  { item: "Chicken", description: "A pack of boneless chicken breasts", quantity: 4, category: "Meat" },
+  { item: 'Apples', description: 'A bag of fresh apples', quantity: 3, category: 'Fruit' },
+  { item: 'Milk', description: 'A carton of whole milk', quantity: 1, category: 'Dairy' },
+  { item: 'Bread', description: 'A loaf of sourdough bread', quantity: 2, category: 'Bakery' },
+  { item: 'Eggs', description: 'A dozen large eggs', quantity: 2, category: 'Dairy' },
+  { item: 'Cheese', description: 'A block of cheddar cheese', quantity: 1, category: 'Dairy' },
+  { item: 'Yogurt', description: 'A container of Greek yogurt', quantity: 3, category: 'Dairy' },
+  {
+    item: 'Chicken',
+    description: 'A pack of boneless chicken breasts',
+    quantity: 4,
+    category: 'Meat',
+  },
 ];
 
 const itemsByCat = {
-  fruit: [{ item: "Apples", description: "A bag of fresh apples", quantity: 3, category: "Fruit" } ],
-  dairy: 
-}
+  fruit: [{ item: 'Apples', description: 'A bag of fresh apples', quantity: 3, category: 'Fruit' }],
+  dairy: [
+    { item: 'Milk', description: 'A carton of whole milk', quantity: 1, category: 'Dairy' },
+    { item: 'Eggs', description: 'A dozen large eggs', quantity: 2, category: 'Dairy' },
+  ],
+};
 
 const numbers = [1, 2, 3, 4, 5, 6, 7];
 
@@ -49,3 +57,23 @@ const daugyba = numbers.reduce((total, sk) => {
   return sandauga;
 }, 1);
 console.log('daugyba ===', daugyba);
+
+// kiek prekiu yra musu shopping list, sudeti visus quantity
+
+let numberOfItems = shoppingList.reduce((total, shObj) => {
+  const sioCikloSuma = total + shObj.quantity;
+  return sioCikloSuma;
+}, 0);
+
+// vienos eilutes sprendimas
+numberOfItems = shoppingList.reduce((total, shObj) => total + shObj.quantity, 0);
+console.log('numberOfItems in our cart ===', numberOfItems);
+
+// suskaiciuoti dviem etapais,
+// 1. gauti masyva su skaiciai kuruos sudet
+const totalAmmount = shoppingList
+  .map((shObj) => shObj.quantity)
+  .reduce((total, sk) => total + sk, 0);
+
+console.log('totalAmmount ===', totalAmmount);
+// 2. su reduce sudeti sk
