@@ -32,11 +32,32 @@ console.log('els ===', els);
   </tr>
 </table>
 */
+
 const headers = ['item', 'description', 'quantity', 'category'];
 
-// sukurti table
-// sukurti tr
-// cikle kurti th prideti texta ir iterpti i tr
+function createHtmlTable(tableDataArr) {
+  els.app.innerHTML = '';
+  // sukurti table
+  const table = crEl('table', null, els.app, 'shopTable');
+  // sukurti tr headers
+  const tr1 = crEl('tr', null, table);
+  // cikle kurti th prideti texta ir iterpti i tr
+  headers.forEach((headerName) => {
+    crEl('th', headerName, tr1);
+  });
+
+  // tbody
+  const tbody = crEl('tbody', null, table);
+  tableDataArr.forEach((shObj) => {
+    const tr = crEl('tr', null, tbody);
+    // sukurti td
+    crEl('td', shObj.item, tr);
+    crEl('td', shObj.description, tr);
+    crEl('td', shObj.quantity, tr);
+    crEl('td', shObj.category, tr);
+  });
+}
+createHtmlTable(shoppingList);
 
 // helper fn
 
