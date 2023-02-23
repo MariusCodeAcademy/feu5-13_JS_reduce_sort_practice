@@ -27,3 +27,16 @@ shoppingList.sort((aObj, bObj) => aObj.category.localeCompare(bObj.category));
 // z-a
 shoppingList.sort((aObj, bObj) => bObj.category.localeCompare(aObj.category));
 console.table(shoppingList);
+
+/**
+ * Funkcija kuri isrikiuoja masyva pagal kategorija
+ * @param {Array} arr
+ */
+function sortItems(arr, byWhat) {
+  arr.sort((aObj, bObj) => aObj[byWhat].localeCompare(bObj[byWhat]));
+}
+sortItems(shoppingList, 'category');
+sortItems(shoppingList, 'item');
+console.table(shoppingList);
+
+// sortItems(shoppingList, 'description');
