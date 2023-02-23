@@ -40,10 +40,12 @@ const headers = ['item', 'description', 'quantity', 'category'];
 
 // helper fn
 
-const crEl = (tagName, text = '', parent = '', className = '') => {
+function crEl(tagName, text = '', parent = '', className = '') {
   const newEl = document.createElement(tagName);
-  if (className) newEl.className = className;
-  if (text) newEl.innerHTML = text;
+  if (className) newEl.classList.add(className);
+  if (text) newEl.textContent = text;
   if (parent) parent.appendChild(newEl);
   return newEl;
-};
+}
+crEl('p', null, els.app);
+crEl('h2', 'hello, world', els.app);
